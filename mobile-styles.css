@@ -20,7 +20,7 @@ body {
     max-width: 500px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     position: relative;
-    border-radius: 12px; /* Rounded edges for a modern look */
+    border-radius: 12px;
 }
 
 header h1 {
@@ -59,25 +59,6 @@ header h1 {
     transform: scale(1.1);
 }
 
-#click-effect-container {
-    position: relative;
-    overflow: hidden;
-    font-family: 'Press Start 2P', cursive;
-}
-
-.click-effect {
-    position: absolute;
-    font-size: 14px;
-    color: #ffcc00;
-    animation: rise 1s ease-out;
-    pointer-events: none;
-}
-
-@keyframes rise {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-50px); }
-}
-
 .tab-content {
     display: none;
     margin-top: 20px;
@@ -89,6 +70,9 @@ header h1 {
 
 #buildings {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .building {
@@ -98,15 +82,22 @@ header h1 {
     border-radius: 10px;
     padding: 15px;
     margin: 10px 5px;
+    width: 90%;
     text-align: left;
     font-size: 16px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
 }
 
 .building strong {
     font-size: 18px;
-    display: block;
     margin-bottom: 5px;
+}
+
+.building-info {
+    font-size: 14px;
+    margin: 5px 0;
 }
 
 .building button {
@@ -118,6 +109,7 @@ header h1 {
     cursor: pointer;
     border-radius: 8px;
     margin-top: 8px;
+    align-self: center;
 }
 
 .building button:hover {
