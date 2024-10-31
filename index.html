@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Clicker Mobile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mobile-styles.css">
+</head>
+<body>
+    <div id="game">
+        <header>
+            <h1>Pixel Clicker</h1>
+        </header>
+
+        <!-- Pixel Tab (Sprite Click) -->
+        <div id="pixel-tab" class="tab-content active">
+            <div id="pixel-counter">Pixels: <span id="pixel-count">0</span></div>
+            <div id="pps-counter">Pixels per second: <span id="pixels-per-second">0</span></div>
+            <!-- Clickable Sprite Image -->
+            <div id="sprite-container">
+                <img id="sprite" src="sprite.png" alt="Click Me!" onclick="clickSprite()">
+            </div>
+            <div id="click-effect-container"></div>
+        </div>
+
+        <!-- Buildings Tab -->
+        <div id="buildings-tab" class="tab-content">
+            <h2>Buildings</h2>
+            <div id="buildings"></div>
+        </div>
+
+        <!-- Bottom Navigation Tab Bar -->
+        <nav class="bottom-nav">
+            <button onclick="switchTab('pixel-tab')" class="nav-button active">Pixel</button>
+            <button onclick="switchTab('buildings-tab')" class="nav-button">Buildings</button>
+        </nav>
+    </div>
+
+    <script src="mobile-script.js"></script>
+</body>
+</html>
