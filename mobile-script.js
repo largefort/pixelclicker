@@ -24,16 +24,16 @@ let buildings = [
     { name: "Pixel Omniverse", cost: 250000000, production: 2000000, count: 0 }
 ];
 
-// Load game data from localStorage
+// Load game data from localStorage on page load
 window.onload = () => {
     loadGame();
     displayBuildings();
-    setInterval(producePixels, 1000); // Automatic pixel production
+    setInterval(producePixels, 1000); // Automatic pixel production every second
     updatePixelsPerSecond();
     setInterval(saveGame, 30000); // Auto-save every 30 seconds
 };
 
-// Tab switching function
+// Tab switching function for Pixel and Buildings tabs
 function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
@@ -61,19 +61,22 @@ function loadGame() {
     }
 }
 
-// Click Sprite
+// Click Sprite to increase pixel count
 function clickSprite() {
     pixelCount += pixelsPerClick;
     updatePixelCount();
     showClickEffect();
 }
 
-// Show Click Effect
+// Show Click Effect animation
 function showClickEffect() {
     const effect = document.createElement("div");
     effect.className = "click-effect";
     effect.innerText = `+${pixelsPerClick}`;
+    effect.style.left = `${Math.random() * 100}px`; // Random horizontal position
+    effect.style.top = `${Math.random() * -20}px`;  // Slightly above click
     document.getElementById("click-effect-container").appendChild(effect);
+
     setTimeout(() => effect.remove(), 1000);
 }
 
@@ -82,7 +85,7 @@ function updatePixelCount() {
     document.getElementById("pixel-count").innerText = pixelCount;
 }
 
-// Calculate Pixels Per Second
+// Calculate Pixels Per Second from owned buildings
 function calculatePixelsPerSecond() {
     return buildings.reduce((totalPPS, building) => totalPPS + building.count * building.production, 0);
 }
@@ -92,7 +95,7 @@ function updatePixelsPerSecond() {
     document.getElementById("pixels-per-second").innerText = calculatePixelsPerSecond();
 }
 
-// Display Buildings
+// Display Buildings in the Buildings tab
 function displayBuildings() {
     const buildingContainer = document.getElementById("buildings");
     buildingContainer.innerHTML = "";
@@ -101,24 +104,24 @@ function displayBuildings() {
         const div = document.createElement("div");
         div.className = "building";
         div.innerHTML = `
-            <strong>${building.name}</strong><br>
-            Cost: ${building.cost} pixels<br>
-            Produces: ${building.production} pixels/sec<br>
-            Owned: ${building.count}<br>
+            <strong>${building.name}</strong>
+            <div class="building-info">Cost: ${building.cost} pixels</div>
+            <div class="building-info">Produces: ${building.production} pixels/sec</div>
+            <div class="building-info">Owned: ${building.count}</div>
             <button onclick="buyBuilding(${index})">Buy</button>
         `;
         buildingContainer.appendChild(div);
     });
 }
 
-// Buy Building
+// Buy Building and update pixel production
 function buyBuilding(index) {
     const building = buildings[index];
     if (pixelCount >= building.cost) {
         pixelCount -= building.cost;
         building.count += 1;
-        pixelsPerClick += 1;
-        building.cost = Math.round(building.cost * 1.15);
+        pixelsPerClick += 1; // Increase pixels per click with each building purchase
+        building.cost = Math.round(building.cost * 1.15); // Increase cost after each purchase
         updatePixelCount();
         displayBuildings();
         updatePixelsPerSecond();
@@ -127,8 +130,9 @@ function buyBuilding(index) {
     }
 }
 
-// Produce Pixels Automatically
+// Automatically produce pixels based on owned buildings every second
 function producePixels() {
-    pixelCount += calculatePixelsPerSecond();
+    const totalPPS = calculatePixelsPerSecond();
+    pixelCount += totalPPS;
     updatePixelCount();
 }
