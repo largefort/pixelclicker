@@ -20,22 +20,25 @@ body {
     max-width: 500px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     position: relative;
+    border-radius: 12px; /* Rounded edges for a modern look */
 }
 
 header h1 {
-    font-size: 18px;
+    font-size: 20px;
     color: #ffcc00;
     margin: 0;
-    padding-top: 10px;
+    padding: 10px 0;
 }
 
 #pixel-counter, #pps-counter {
     background: #111;
     border: 2px solid #00ccff;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 10px;
     margin: 10px auto;
     width: fit-content;
+    font-size: 18px;
+    color: #ffcc00;
 }
 
 #sprite-container {
@@ -45,8 +48,8 @@ header h1 {
 }
 
 #sprite {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
     border-radius: 10px;
     transition: transform 0.1s;
@@ -64,7 +67,7 @@ header h1 {
 
 .click-effect {
     position: absolute;
-    font-size: 10px;
+    font-size: 14px;
     color: #ffcc00;
     animation: rise 1s ease-out;
     pointer-events: none;
@@ -84,6 +87,44 @@ header h1 {
     display: block;
 }
 
+#buildings {
+    margin-top: 10px;
+}
+
+.building {
+    background: #444;
+    color: #ffcc00;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 5px;
+    text-align: left;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.building strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.building button {
+    background: #00cc66;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.building button:hover {
+    background: #ffcc00;
+    color: #000;
+}
+
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -96,8 +137,8 @@ header h1 {
 
 .nav-button {
     flex: 1;
-    padding: 15px;
-    font-size: 16px;
+    padding: 15px 0;
+    font-size: 18px;
     color: #ffcc00;
     border: none;
     background: none;
